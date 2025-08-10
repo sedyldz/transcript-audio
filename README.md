@@ -1,202 +1,153 @@
-# Video Transcript Extractor
+# Video Altyazı Oluşturucu
 
-A powerful tool for extracting high-quality transcripts from any video file. This project uses OpenAI's Whisper model optimized for Turkish language transcription with advanced audio processing capabilities.
+Video dosyalarınızdan yüksek kaliteli altyazılar oluşturmak için geliştirilmiş basit ve etkili bir araç. OpenAI'nin Whisper modelini kullanarak Türkçe dilinde optimize edilmiş transkripsiyon yapar.
 
-## Features
+## 🎯 Ne İşe Yarar?
 
-- 🎥 **Video to Audio Extraction**: High-quality audio extraction using ffmpeg with optimized settings
-- 🎤 **Advanced Transcription**: Uses OpenAI's Whisper model with Turkish language optimization
-- 📝 **Multiple Output Formats**: Support for TXT, JSON, SRT, and VTT formats
-- 🔧 **Flexible Pipeline**: Can run full pipeline or individual steps
-- 🎯 **Quality Options**: Configurable audio quality and transcription model sizes
-- 🚀 **GPU Support**: Automatic CUDA detection for faster processing
+Bu araç ile şunları yapabilirsiniz:
 
-## Prerequisites
+- **Video altyazıları oluşturma**: YouTube videoları, eğitim içerikleri, toplantı kayıtları
+- **Ses dosyası transkripsiyonu**: Podcast'ler, röportajlar, sesli notlar
+- **Farklı formatlarda çıktı**: TXT, JSON, SRT, VTT formatlarında altyazı
+- **Modüler kullanım**: İhtiyacınıza göre sadece ses çıkarma veya sadece transkripsiyon
 
-### System Requirements
+## 🚀 Hızlı Başlangıç
 
-- Python 3.8 or higher
-- ffmpeg (for audio extraction)
-- CUDA-compatible GPU (optional, for faster processing)
+### 1. Gereksinimler
 
-### Install ffmpeg
-
-**macOS:**
+**macOS için:**
 
 ```bash
 brew install ffmpeg
 ```
 
-**Ubuntu/Debian:**
+**Ubuntu/Debian için:**
 
 ```bash
-sudo apt update
-sudo apt install ffmpeg
+sudo apt update && sudo apt install ffmpeg
 ```
 
-**Windows:**
-Download from [ffmpeg.org](https://ffmpeg.org/download.html) or install via Chocolatey:
+**Windows için:**
+[ffmpeg.org](https://ffmpeg.org/download.html) adresinden indirin
+
+### 2. Kurulum
 
 ```bash
-choco install ffmpeg
-```
-
-## Installation
-
-1. **Clone the repository:**
-
-```bash
-git clone <repository-url>
-cd video-transcript
-```
-
-2. **Create a virtual environment:**
-
-```bash
+# Sanal ortam oluştur
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. **Install dependencies:**
-
-```bash
+# Gereksinimleri yükle
 pip install -r requirements.txt
 ```
 
-## Usage
+## 📖 Nasıl Kullanılır?
 
-### Quick Start (Recommended)
+### Basit Kullanım (Önerilen)
 
-Use the main pipeline script for the easiest experience:
-
-```bash
-python video_to_transcript.py your_video.mp4
-```
-
-This will:
-
-1. Extract high-quality audio from your video
-2. Transcribe the audio using the large-v3 Whisper model
-3. Save the transcript as a text file
-
-### Advanced Usage
-
-#### Full Pipeline with Custom Options
+**Video dosyanızdan altyazı oluşturmak için:**
 
 ```bash
-python video_to_transcript.py your_video.mp4 \
-    --quality high \
-    --model large-v3 \
-    --format txt
+python video_to_transcript.py videonuz.mp4
 ```
 
-#### Audio Extraction Only
+Bu komut:
+
+1. Videodan ses çıkarır
+2. Sesi metne çevirir
+3. Altyazı dosyasını oluşturur
+
+### Farklı Formatlarda Altyazı
+
+**SRT formatında (YouTube için):**
 
 ```bash
-python video_to_transcript.py your_video.mp4 --audio-only
+python video_to_transcript.py videonuz.mp4 --format srt
 ```
 
-#### Transcribe Existing Audio File
+**VTT formatında (web için):**
 
 ```bash
-python video_to_transcript.py --transcribe-only your_audio.wav
+python video_to_transcript.py videonuz.mp4 --format vtt
 ```
 
-### Individual Scripts
+### Sadece Ses Dosyası Varsa
 
-#### Audio Extraction
+Eğer zaten ses dosyanız varsa, doğrudan transkripsiyon yapabilirsiniz:
 
 ```bash
-python extract_audio.py your_video.mp4 -q high
+python transcribe_audio.py sesiniz.wav
 ```
 
-Options:
+### Modüler Kullanım
 
-- `-q, --quality`: Audio quality (`high`, `medium`, `low`)
-- `-o, --output`: Custom output path
-- `--check-ffmpeg`: Verify ffmpeg installation
-
-#### Audio Transcription
+**Sadece ses çıkarmak için:**
 
 ```bash
-python transcribe_audio.py your_audio.wav -m large-v3 -f txt
+python extract_audio.py videonuz.mp4
 ```
 
-Options:
-
-- `-m, --model`: Whisper model size (`tiny`, `base`, `small`, `medium`, `large`, `large-v2`, `large-v3`)
-- `-l, --language`: Language code (default: `tr` for Turkish)
-- `-f, --format`: Output format (`txt`, `json`, `srt`, `vtt`)
-- `-o, --output`: Custom output path
-- `--check-whisper`: Verify whisper installation
-
-## Configuration Options
-
-### Audio Quality Settings
-
-- **High**: 48kHz, 24-bit, advanced filters (best for transcription)
-- **Medium**: 44.1kHz, 16-bit, basic filters (balanced)
-- **Low**: 16kHz, 16-bit, minimal filters (fastest)
-
-### Whisper Model Sizes
-
-| Model    | Size    | Speed   | Accuracy  | Use Case          |
-| -------- | ------- | ------- | --------- | ----------------- |
-| tiny     | 39 MB   | Fastest | Basic     | Quick tests       |
-| base     | 74 MB   | Fast    | Good      | General use       |
-| small    | 244 MB  | Medium  | Better    | Balanced          |
-| medium   | 769 MB  | Slower  | High      | High accuracy     |
-| large    | 1550 MB | Slow    | Highest   | Best results      |
-| large-v2 | 1550 MB | Slow    | Very High | Enhanced accuracy |
-| large-v3 | 1550 MB | Slow    | Best      | Latest model      |
-
-### Output Formats
-
-- **TXT**: Simple text format (default)
-- **JSON**: Detailed format with timestamps and metadata
-- **SRT**: SubRip subtitle format
-- **VTT**: WebVTT subtitle format
-
-## Examples
-
-### Basic Video Transcription
+**Sadece transkripsiyon için:**
 
 ```bash
-# Extract and transcribe any video file
-python video_to_transcript.py your_video.mp4
+python transcribe_audio.py sesiniz.wav --format srt
 ```
 
-### High-Quality Processing
+## 🎬 Kullanım Senaryoları
+
+### 1. YouTube Video Altyazıları
 
 ```bash
-# Use highest quality settings
-python video_to_transcript.py video.mp4 \
-    --quality high \
-    --model large-v3 \
-    --format json
+python video_to_transcript.py youtube_video.mp4 --format srt
 ```
 
-### Batch Processing
+### 2. Eğitim İçerikleri
 
 ```bash
-# Process multiple videos
-for video in *.mp4; do
-    python video_to_transcript.py "$video"
-done
+python video_to_transcript.py ders_kaydi.mp4 --quality high --model large-v3
 ```
 
-### Create Subtitles
+### 3. Toplantı Kayıtları
 
 ```bash
-# Generate SRT subtitles
-python video_to_transcript.py video.mp4 --format srt
+python video_to_transcript.py toplanti.mp4 --format txt
 ```
 
-## Output Files
+### 4. Podcast Transkripsiyonu
 
-The pipeline creates the following files:
+```bash
+python transcribe_audio.py podcast.wav --format json
+```
 
-1. **Audio file**: `{video_name}_audio.wav`
-2. **Transcript file**: `{video_name}_audio_transcript.{format}`
+### 5. Sesli Notlar
 
-Example:
+```bash
+python transcribe_audio.py notlar.wav --model medium
+```
+
+## ⚙️ Kalite Seçenekleri
+
+### Ses Kalitesi
+
+- **high**: En iyi kalite (48kHz, 24-bit) - Önerilen
+- **medium**: Orta kalite (44.1kHz, 16-bit) - Dengeli
+- **low**: Düşük kalite (16kHz, 16-bit) - Hızlı
+
+### Model Boyutları
+
+- **tiny**: En hızlı, temel doğruluk
+- **base**: Hızlı, iyi doğruluk
+- **small**: Orta hız, daha iyi doğruluk
+- **medium**: Yavaş, yüksek doğruluk
+- **large-v3**: En yavaş, en iyi doğruluk (Önerilen)
+
+## 📁 Çıktı Dosyaları
+
+Program şu dosyaları oluşturur:
+
+1. **Ses dosyası**: `video_adi_audio.wav`
+2. **Altyazı dosyası**: `video_adi_audio_transcript.txt`
+
+### Format Örnekleri
+
+**TXT formatı:**
