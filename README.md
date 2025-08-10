@@ -1,4 +1,4 @@
-# Video Altyazı Oluşturucu
+# Video Sesini Metne Dönüştürücü
 
 Video dosyalarınızdan yüksek kaliteli altyazılar oluşturmak için geliştirilmiş basit ve etkili bir araç. OpenAI'nin Whisper modelini kullanarak Türkçe dilinde optimize edilmiş transkripsiyon yapar.
 
@@ -11,7 +11,7 @@ Bu araç ile şunları yapabilirsiniz:
 - **Farklı formatlarda çıktı**: TXT, JSON, SRT, VTT formatlarında altyazı
 - **Modüler kullanım**: İhtiyacınıza göre sadece ses çıkarma veya sadece transkripsiyon
 
-## 🚀 Hızlı Başlangıç
+## 🚀 Başlangıç
 
 ### 1. Gereksinimler
 
