@@ -1,6 +1,6 @@
-# Instagram Transcript Extractor
+# Video Transcript Extractor
 
-A powerful tool for extracting high-quality transcripts from Instagram videos and other video files. This project uses OpenAI's Whisper model optimized for Turkish language transcription with advanced audio processing capabilities.
+A powerful tool for extracting high-quality transcripts from any video file. This project uses OpenAI's Whisper model optimized for Turkish language transcription with advanced audio processing capabilities.
 
 ## Features
 
@@ -47,7 +47,7 @@ choco install ffmpeg
 
 ```bash
 git clone <repository-url>
-cd instagram-transcript
+cd video-transcript
 ```
 
 2. **Create a virtual environment:**
@@ -159,11 +159,11 @@ Options:
 
 ## Examples
 
-### Basic Instagram Video Transcription
+### Basic Video Transcription
 
 ```bash
-# Extract and transcribe an Instagram video
-python video_to_transcript.py instagram_video.mp4
+# Extract and transcribe any video file
+python video_to_transcript.py your_video.mp4
 ```
 
 ### High-Quality Processing
