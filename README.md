@@ -151,3 +151,244 @@ Program şu dosyaları oluşturur:
 ### Format Örnekleri
 
 **TXT formatı:**
+
+---
+
+# Video to Text Converter
+
+A simple and effective tool developed to create high-quality subtitles from your video files. It performs transcription optimized for Turkish language using OpenAI's Whisper model.
+
+## 🎯 What Does It Do?
+
+With this tool, you can:
+
+- **Create video subtitles**: YouTube videos, educational content, meeting recordings
+- **Audio file transcription**: Podcasts, interviews, voice notes
+- **Output in different formats**: Subtitles in TXT, JSON, SRT, VTT formats
+- **Modular usage**: Extract audio only or transcription only according to your needs
+
+## 🚀 Getting Started
+
+### 1. Requirements
+
+**For macOS:**
+
+```bash
+brew install ffmpeg
+```
+
+**For Ubuntu/Debian:**
+
+```bash
+sudo apt update && sudo apt install ffmpeg
+```
+
+**For Windows:**
+Download from [ffmpeg.org](https://ffmpeg.org/download.html)
+
+### 2. Installation
+
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install requirements
+pip install -r requirements.txt
+```
+
+## 📖 How to Use?
+
+### Simple Usage (Recommended)
+
+**To create subtitles from your video file:**
+
+```bash
+python video_to_transcript.py yourvideo.mp4
+```
+
+This command:
+
+1. Extracts audio from video
+2. Converts audio to text
+3. Creates subtitle file
+
+### Subtitles in Different Formats
+
+**In SRT format (for YouTube):**
+
+```bash
+python video_to_transcript.py yourvideo.mp4 --format srt
+```
+
+**In VTT format (for web):**
+
+```bash
+python video_to_transcript.py yourvideo.mp4 --format vtt
+```
+
+### If You Only Have Audio File
+
+If you already have an audio file, you can transcribe directly:
+
+```bash
+python transcribe_audio.py youraudio.wav
+```
+
+### Modular Usage
+
+**To extract audio only:**
+
+```bash
+python extract_audio.py yourvideo.mp4
+```
+
+**For transcription only:**
+
+```bash
+python transcribe_audio.py youraudio.wav --format srt
+```
+
+## 🎬 Usage Scenarios
+
+### 1. YouTube Video Subtitles
+
+```bash
+python video_to_transcript.py youtube_video.mp4 --format srt
+```
+
+### 2. Educational Content
+
+```bash
+python video_to_transcript.py lesson_recording.mp4 --quality high --model large-v3
+```
+
+### 3. Meeting Recordings
+
+```bash
+python video_to_transcript.py meeting.mp4 --format txt
+```
+
+### 4. Podcast Transcription
+
+```bash
+python transcribe_audio.py podcast.wav --format json
+```
+
+### 5. Voice Notes
+
+```bash
+python transcribe_audio.py notes.wav --model medium
+```
+
+## ⚙️ Quality Options
+
+### Audio Quality
+
+- **high**: Best quality (48kHz, 24-bit) - Recommended
+- **medium**: Medium quality (44.1kHz, 16-bit) - Balanced
+- **low**: Low quality (16kHz, 16-bit) - Fast
+
+### Model Sizes
+
+- **tiny**: Fastest, basic accuracy
+- **base**: Fast, good accuracy
+- **small**: Medium speed, better accuracy
+- **medium**: Slow, high accuracy
+- **large-v3**: Slowest, best accuracy (Recommended)
+
+## 📁 Output Files
+
+The program creates the following files:
+
+1. **Audio file**: `video_name_audio.wav`
+2. **Subtitle file**: `video_name_audio_transcript.txt`
+
+### Format Examples
+
+**TXT format:**
+
+```
+00:00:00,000 --> 00:00:03,000
+Hello, this is a test video.
+
+00:00:03,000 --> 00:00:06,000
+We are testing our video transcription tool.
+```
+
+**SRT format:**
+
+```
+1
+00:00:00,000 --> 00:00:03,000
+Hello, this is a test video.
+
+2
+00:00:03,000 --> 00:00:06,000
+We are testing our video transcription tool.
+```
+
+**VTT format:**
+
+```
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+Hello, this is a test video.
+
+00:00:03.000 --> 00:00:06.000
+We are testing our video transcription tool.
+```
+
+## Advanced Options
+
+### Command Line Arguments
+
+```bash
+python video_to_transcript.py video.mp4 [OPTIONS]
+
+Options:
+  --format FORMAT     Output format (txt, srt, vtt, json) [default: txt]
+  --quality QUALITY   Audio quality (low, medium, high) [default: medium]
+  --model MODEL       Whisper model size [default: base]
+  --language LANG     Language code (tr, en, etc.) [default: tr]
+  --output OUTPUT     Output filename
+```
+
+### Examples
+
+```bash
+# High quality transcription with large model
+python video_to_transcript.py video.mp4 --quality high --model large-v3
+
+# English transcription
+python video_to_transcript.py video.mp4 --language en
+
+# Custom output filename
+python video_to_transcript.py video.mp4 --output my_transcript.txt
+```
+
+## Contributing
+
+Feel free to contribute to this project by:
+
+1. Forking the repository
+2. Creating a feature branch
+3. Making your changes
+4. Submitting a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🆘 Support
+
+If you encounter any issues or have questions:
+
+1. Check the existing issues
+2. Create a new issue with detailed information
+3. Include your operating system and Python version
+
+---
+
+_This tool is optimized for Turkish language but supports multiple languages through OpenAI's Whisper model._
