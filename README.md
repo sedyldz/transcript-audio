@@ -152,6 +152,57 @@ Program şu dosyaları oluşturur:
 
 **TXT formatı:**
 
+```
+00:00:00,000 --> 00:00:03,000
+Merhaba, bu bir test videosudur.
+
+00:00:03,000 --> 00:00:06,000
+Video transkripsiyon aracımızı test ediyoruz.
+```
+
+**SRT formatı:**
+
+```
+1
+00:00:00,000 --> 00:00:03,000
+Merhaba, bu bir test videosudur.
+
+2
+00:00:03,000 --> 00:00:06,000
+Video transkripsiyon aracımızı test ediyoruz.
+```
+
+**VTT formatı:**
+
+```
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+Merhaba, bu bir test videosudur.
+
+00:00:03.000 --> 00:00:06.000
+Video transkripsiyon aracımızı test ediyoruz.
+```
+
+**JSON formatı:**
+
+```json
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 3.0,
+      "text": "Merhaba, bu bir test videosudur."
+    },
+    {
+      "start": 3.0,
+      "end": 6.0,
+      "text": "Video transkripsiyon aracımızı test ediyoruz."
+    }
+  ]
+}
+```
+
 ---
 
 # Video to Text Converter
